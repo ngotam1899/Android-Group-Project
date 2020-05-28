@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".PlaceActivity">
+    <LinearLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/colorPrimary"
+            app:layout_constraintBottom_toTopOf="@+id/txtSearch"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:background="@color/colorPrimary"
+                android:id="@+id/btnCancelCity"
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                android:text="Hủy"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF" />
+
+            <TextView
+                android:layout_width="330dp"
+                android:gravity="center"
+                android:layout_height="30dp"
+                android:text="Chọn tỉnh thành"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btnChonCity"
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                android:background="@color/colorPrimary"
+                android:text="Xong"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF" />
+    </LinearLayout>
+    <FrameLayout
+            android:id="@+id/search_edit_frame"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@android:color/transparent">
+
+            <EditText
+                android:id="@+id/txtSearch"
+                android:layout_gravity="center"
+                android:layout_width="390dp"
+                android:layout_height="40dp"
+                android:background="@drawable/search_round_2"
+                android:clickable="true"
+                android:hint="Tìm Tỉnh thành"
+                android:drawableLeft="@drawable/search"
+                android:drawablePadding="5dp"
+                android:imeOptions="actionSend"
+                android:inputType="text"
+                android:textSize="18sp"
+                android:paddingLeft="10dp"/>
+    </FrameLayout>
+
+    <ListView
+        android:id="@+id/lvCity"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>
