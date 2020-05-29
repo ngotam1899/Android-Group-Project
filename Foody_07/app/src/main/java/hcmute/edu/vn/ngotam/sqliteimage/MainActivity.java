@@ -1,6 +1,8 @@
 package hcmute.edu.vn.ngotam.sqliteimage;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -11,12 +13,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     Button btnCity;
     //Button btnThem;
     ListView listView;
-    ArrayList<Food> foodsList;
+    List<Food> foodsList;
     ThingAdapter adapter;
     public static Database database; //public static để class khác gọi đc
 
@@ -25,7 +28,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         btnCity=(Button) findViewById(R.id.btnCity);
+        foodsList=new ArrayList<>();
+        foodsList.add(new Food(1,"Bánh tráng nướng","TPHCM","20km","Quán ăn",null));
+        foodsList.add(new Food(2,"Hủ tiếu bò khô","TPHCM","20km","Quán ăn",null));
+        foodsList.add(new Food(3,"Nem nướng Hồng Bàng","TPHCM","20km","Quán ăn",null));
+        foodsList.add(new Food(4,"Trà sữa Bà Thúy","TPHCM","20km","Quán ăn",null));
+        foodsList.add(new Food(5,"Phở 99","TPHCM","20km","Quán ăn",null));
+        foodsList.add(new Food(6,"Cà phê Trung Nguyên","TPHCM","20km","Quán ăn",null));
 
+        RecyclerView recyclerView=(RecyclerView)findViewById(R.id.recyclerView);
+        FoodApdater myAdapter=new FoodApdater(this,foodsList);
+        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
+        recyclerView.setAdapter(myAdapter);
         //btnThem=(Button) findViewById(R.id.btnThem);
         /*
         listView=(ListView) findViewById(R.id.listView);

@@ -49,16 +49,17 @@ public class ThingAdapter  extends BaseAdapter {
             holder=new ViewHolder();
             LayoutInflater inflater=(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view=inflater.inflate(layout, null);
-            holder.txtTen=(TextView) view.findViewById(R.id.txtName);
-            holder.txtDiaChi=(TextView) view.findViewById(R.id.txtAddress);
-            holder.txtKhoangCach=(TextView) view.findViewById(R.id.txtDistance);
-            holder.txtLoaiHinh=(TextView) view.findViewById(R.id.txtType);
-            holder.imageView=(ImageView) view.findViewById(R.id.imgCustom);
+            holder.txtTen=(TextView) view.findViewById(R.id.txtName_2);
+            holder.txtDiaChi=(TextView) view.findViewById(R.id.txtAddress_2);
+            holder.txtKhoangCach=(TextView) view.findViewById(R.id.txtDistance_2);
+            holder.txtLoaiHinh=(TextView) view.findViewById(R.id.txtType_2);
+            holder.imageView=(ImageView) view.findViewById(R.id.imgCustom_2);
             view.setTag(holder);
         }
         else {
             holder=(ViewHolder) view.getTag();
         }
+        /*
         Food food=foodsList.get(i);
         holder.txtTen.setText(food.getTen());
         holder.txtDiaChi.setText(food.getDiaChi());
@@ -69,7 +70,7 @@ public class ThingAdapter  extends BaseAdapter {
         byte[] hinhAnh=food.getHinh();
         Bitmap bitmap= BitmapFactory.decodeByteArray(hinhAnh,0,hinhAnh.length);
         holder.imageView.setImageBitmap(bitmap);
-
+        */
         return view;
     }
 }

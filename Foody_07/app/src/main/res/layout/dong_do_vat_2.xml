@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="200dp"
     android:layout_height="200dp"
@@ -9,26 +10,40 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <ImageView
-            android:id="@+id/restaurant_img_id"
+            android:id="@+id/imgCustom_2"
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:scaleType="centerCrop"
             android:background="#2d2d2d"/>
 
         <TextView
-            android:id="@+id/restaurant_id"
+            android:id="@+id/txtName_2"
             android:layout_width="match_parent"
             android:layout_height="18dp"
-            android:text="Restaurant name"
+            android:text="Tên"
             android:textColor="#2d2d2d"
             android:textSize="13sp"
             android:textStyle="bold" />
         <TextView
-            android:id="@+id/restaurant_des"
+            android:id="@+id/txtAddress_2"
+            android:textSize="13sp"
+            android:textColor="#2d2d2d"
+            android:layout_width="match_parent"
+            android:layout_height="18dp"
+            android:text="Địa chỉ"/>
+        <TextView
+            android:id="@+id/txtDistance_2"
+            android:textSize="13sp"
+            android:textColor="#2d2d2d"
+            android:layout_width="match_parent"
+            android:layout_height="18dp"
+            android:text="Khoảng cách"/>
+        <TextView
+            android:id="@+id/txtType_2"
             android:textSize="13sp"
             android:textColor="#2d2d2d"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Restaurant Description"/>
+            android:text="Loại hình"/>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
