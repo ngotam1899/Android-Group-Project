@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F3835F">
+
+    <TextView
+        android:id="@+id/Login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+
+        android:text="LOGIN"
+        android:textColor="@color/cardview_light_background"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.21"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp" />
+
+
+        <EditText
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="20dp"
+        android:background="#FAF1F1"
+        android:elevation="10dp"
+        android:hint="Username"
+        android:outlineAmbientShadowColor="@android:color/darker_gray"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="217dp"
+        tools:targetApi="p"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="20dp"
+        android:background="#FAF1F1"
+        android:elevation="10dp"
+        android:hint="Password"
+        android:outlineAmbientShadowColor="@android:color/darker_gray"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="24dp"
+        tools:layout_editor_absoluteY="304dp"
+        tools:targetApi="p"/>
+
+    <Button
+        android:id="@+id/btnlogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="386dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
