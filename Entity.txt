@@ -1,0 +1,22 @@
+TINHTHANH
+	+ TenTinh: nvarchar
+	+ MaCode: int
+QUANAN
+	+ IdQuan: int
+	+TenQuan: nvarchar
+	+DiaChi: nvarchar
+	+LoaiHinh: nvarchar
+	+TamGia: nvarchar
+	+Hotline: numeric(10)
+	+MaCode
+MONAN
+	+IdMonAn: int
+	+TenMon: nvarchar
+	+HinhAnh: image
+	+Gia: money
+	+IdQuan
+Wifi
+	+Id: int
+	+IdQuan
+	+TenWifi: nvarchar
+	+Password: varchar
