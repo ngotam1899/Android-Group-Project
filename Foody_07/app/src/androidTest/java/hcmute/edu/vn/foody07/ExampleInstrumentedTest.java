@@ -1,4 +1,4 @@
-package hcmute.edu.vn.ngotam.sqliteimage;
+package hcmute.edu.vn.foody07;
 
 import android.content.Context;
 
@@ -21,7 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-
-        assertEquals("hcmute.edu.vn.ngotam.sqliteimage", appContext.getPackageName());
+        assertEquals("hcmute.edu.vn.foody07", appContext.getPackageName());
     }
 }

@@ -1,4 +1,4 @@
-package hcmute.edu.vn.ngotam.sqliteimage;
+package hcmute.edu.vn.foody07;
 
 import org.junit.Test;
 
