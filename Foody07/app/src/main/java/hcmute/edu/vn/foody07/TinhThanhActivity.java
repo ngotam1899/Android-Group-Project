@@ -46,14 +46,15 @@ public class TinhThanhActivity extends AppCompatActivity {
 
     private void readData() {
         database=Database.initDatabase(this,DATABASE_NAME);
-        Cursor cursor=database.rawQuery("SELECT ProvinceName FROM TINHTHANH",null);
+        Cursor cursor=database.rawQuery("SELECT * FROM TINHTHANH",null);
         //xóa dữ liệu cũ
         list.clear();
         for(int i=0;i<cursor.getCount();i++){
             cursor.moveToPosition(i);
-            String name=cursor.getString(0);
+            int id=cursor.getInt(0);
+            String name=cursor.getString(1);
             //thêm dữ lie5u vào list
-            list.add(new TinhThanh(name));
+            list.add(new TinhThanh(id, name));
         }
         anAdapter.notifyDataSetChanged(); //adapter vẽ lại giao diện
     }

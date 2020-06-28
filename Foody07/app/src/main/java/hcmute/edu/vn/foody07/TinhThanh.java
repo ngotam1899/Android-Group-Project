@@ -4,7 +4,8 @@ public class TinhThanh {
     public int CodeNumber;
     public String ProvinceName;
 
-    public TinhThanh(String provinceName) {
+    public TinhThanh(int codeNumber, String provinceName) {
+        CodeNumber = codeNumber;
         ProvinceName = provinceName;
     }
 
