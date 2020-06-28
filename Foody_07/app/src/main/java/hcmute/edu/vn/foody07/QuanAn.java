@@ -7,15 +7,6 @@ public class QuanAn {
     public String TypeShop;
     public byte[] Image;
     public String Prices;
-    public int CodeNumber;
-
-    public void setCodeNumber(int codeNumber) {
-        CodeNumber = codeNumber;
-    }
-
-    public int getCodeNumber() {
-        return CodeNumber;
-    }
 
     public void setIdShopFood(int idShopFood) {
         IdShopFood = idShopFood;
@@ -70,13 +61,5 @@ public class QuanAn {
         NameShopFood = nameShopFood;
         DiaChi = diaChi;
         Image = image;
-    }
-
-    public QuanAn(String nameShopFood, String diaChi,byte[] image,String typeShop) {
-
-        NameShopFood = nameShopFood;
-        DiaChi = diaChi;
-        Image = image;
-        TypeShop = typeShop;
     }
 }

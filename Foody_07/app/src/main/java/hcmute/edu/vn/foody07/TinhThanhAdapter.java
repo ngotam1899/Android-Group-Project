@@ -52,7 +52,7 @@ public class TinhThanhAdapter extends BaseAdapter {
         btnChon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(context,QuanAnListActivity.class);
+                Intent intent=new Intent(context,MainActivity.class);
                 intent.putExtra("CodeNumber",tinhThanh.CodeNumber);
                 context.startActivity(intent);
             }
