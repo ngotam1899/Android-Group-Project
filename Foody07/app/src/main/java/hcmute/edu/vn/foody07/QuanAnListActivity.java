@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 public class QuanAnListActivity extends AppCompatActivity {
     SQLiteDatabase database;
     final String DATABASE_NAME="foody.sqlite";
-    Button btnCity;
+    Button btnCity,btnBack;
     EditText txtSearch;
 
     ListView listView;
@@ -30,10 +31,25 @@ public class QuanAnListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quan_an_list);
 
         btnCity=(Button) findViewById(R.id.btnCity);
+        btnBack=(Button) findViewById(R.id.btnBack);
         txtSearch=(EditText)findViewById(R.id.txtSearch);
 
         initCity();
         initQuanAn();
+        btnCity.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(v.getContext(), TinhThanhActivity.class);
+                startActivityForResult(myIntent, 0);
+            }
+        });
+        btnBack.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(v.getContext(), MainActivity.class);
+                startActivityForResult(myIntent, 0);
+            }
+        });
     }
 
     private void initQuanAn() {
@@ -50,12 +66,13 @@ public class QuanAnListActivity extends AppCompatActivity {
         list.clear();
         for(int i=0;i<cursor.getCount();i++){
             cursor.moveToPosition(i);
+            int id=cursor.getInt(0);
             String name=cursor.getString(1);
             String address=cursor.getString(2);
             byte[] img=cursor.getBlob(4);
             String type=cursor.getString(3);
             //thêm dữ lie5u vào list
-            list.add(new QuanAn(name,address,img,type));
+            list.add(new QuanAn(id,name,address,img,type));
         }
         adapter.notifyDataSetChanged(); //adapter vẽ lại giao diện
     }

@@ -1,6 +1,7 @@
 package hcmute.edu.vn.foody07;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
@@ -49,13 +50,19 @@ public class QuanAnListAdapter extends BaseAdapter {
         TextView txtType= (TextView) row.findViewById(R.id.txtType);
         TextView txtDistance=(TextView) row.findViewById(R.id.txtDistance);
 
-        QuanAn quanAn=list.get(position);
+        final QuanAn quanAn=list.get(position);
         txtName.setText(quanAn.NameShopFood);
         txtAddress.setText(quanAn.DiaChi);
         txtType.setText(quanAn.TypeShop);
         Bitmap bitmap= BitmapFactory.decodeByteArray(quanAn.Image,0,quanAn.Image.length);
         imgCustom.setImageBitmap(bitmap);
-
+        imgCustom.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent=new Intent(context,QuanAnDetailActivity.class);
+                intent.putExtra("IdShopFood",quanAn.IdShopFood);
+                context.startActivity(intent);
+            }
+        });
         return row;
     }
 }

@@ -8,9 +8,11 @@ import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -45,12 +47,10 @@ public class TinhThanhAdapter extends BaseAdapter {
         View row=inflater.inflate(R.layout.tinh_thanh_items,null);
 
         TextView txtTinhThanh= (TextView) row.findViewById(R.id.txtTinhThanh);
-        Button btnChon=(Button) row.findViewById(R.id.btnChon);
 
         final TinhThanh tinhThanh=list.get(position);
         txtTinhThanh.setText(tinhThanh.ProvinceName);
-        btnChon.setOnClickListener(new View.OnClickListener() {
-            @Override
+        txtTinhThanh.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent=new Intent(context,QuanAnListActivity.class);
                 intent.putExtra("CodeNumber",tinhThanh.CodeNumber);

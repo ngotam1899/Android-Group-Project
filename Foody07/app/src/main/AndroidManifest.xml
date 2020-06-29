@@ -12,7 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".QuanAnDetailActivity"></activity>
+        <activity android:name=".MonAnListActivity"></activity>
+        <activity
+            android:name=".ui.login.MonAnListActivity"
+            android:label="@string/title_activity_mon_an_list" />
+        <activity android:name=".QuanAnDetailActivity" />
         <activity android:name=".QuanAnListActivity" />
         <activity android:name=".TinhThanhActivity" />
         <activity android:name=".MainActivity">
