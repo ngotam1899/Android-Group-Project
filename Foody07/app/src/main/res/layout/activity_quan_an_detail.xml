@@ -6,6 +6,17 @@
     android:orientation="vertical"
     tools:context=".QuanAnDetailActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:drawableLeft="@drawable/ic_back_search"
+        android:paddingLeft="5dp"
+        android:text=" Tìm kiếm"
+        android:textColor="#F5F1E9E9"
+        android:textSize="12dp"
+        android:textStyle="bold" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -72,7 +83,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="CHƯA MỞ CỬA"
-                android:textSize="20dp"
+                android:paddingBottom="3dp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -84,21 +95,18 @@
                     android:id="@+id/txtOpen"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10:00"
-                    android:textSize="20dp" />
+                    android:text="10:00" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" - "
-                    android:textSize="20dp" />
+                    android:text=" - " />
 
                 <TextView
                     android:id="@+id/txtClose"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="21:00"
-                    android:textSize="20dp" />
+                    android:text="21:00"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -106,87 +114,95 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:padding="15dp"
+            android:drawableLeft="@drawable/phonebook"
+            android:drawablePadding="5dp"
             android:text="Liên hệ"
             android:textAllCaps="false"
-            android:textSize="20dp" />
+            android:textSize="18dp" />
     </FrameLayout>
 
     <TableRow
         android:layout_width="match_parent"
-        android:layout_height="10dp"
+        android:layout_height="8dp"
         android:background="#BDBDBD" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="10dp">
-
-        <TextView
-            android:id="@+id/txtAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="15dp"
-            android:text="Chợ Bùi Đức, Quốc Lộ 1A, P.Tam Hòa, Tp. Biên Hòa, Đồng Nai"
-            android:textSize="18dp" />
+        android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="10dp">
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <TextView
-                android:id="@+id/txtDistance"
+                android:id="@+id/txtAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="4.2km"
-                android:textColor="#4CAF50"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+                android:paddingBottom="15dp"
+                android:text="Chợ Bùi Đức, Quốc Lộ 1A, P.Tam Hòa, Tp. Biên Hòa, Đồng Nai" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text=" (Từ vị trí hiện tại)"
-                android:textSize="18dp" />
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp">
 
-        <TextView
-            android:id="@+id/txtType"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="10dp"
-            android:text="Quán ăn - Món Việt"
-            android:textSize="18dp" />
+                <TextView
+                    android:id="@+id/txtDistance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="4.2km"
+                    android:textColor="#4CAF50"
+                    android:textStyle="bold" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text=" (Từ vị trí hiện tại)" />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/txtMin"
+                android:id="@+id/txtType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="10000"
-                android:textSize="18dp" />
+                android:paddingBottom="10dp"
+                android:text="Quán ăn - Món Việt" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text=" - "
-                android:textSize="18dp" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/txtMax"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="160000"
-                android:textSize="18dp" />
+                <TextView
+                    android:id="@+id/txtMin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="10000" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text=" - " />
+
+                <TextView
+                    android:id="@+id/txtMax"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="160000" />
+            </LinearLayout>
+
         </LinearLayout>
-
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/store_map_id"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:apiKey="@string/api_map_key" />
     </LinearLayout>
 
     <TableRow
@@ -203,13 +219,37 @@
         android:paddingLeft="10dp"
         android:text="Thực đơn"
         android:textAllCaps="false"
-        android:textColor="#7E7E7E"
-        android:textSize="18dp" />
+        android:textColor="#7E7E7E" />
 
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#BDBDBD" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnWifi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:text="Thêm wifi"
+            android:textAllCaps="false"
+            android:textColor="#3F51B5" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:paddingRight="10dp"
+            android:text="Nhập mật khẩu"
+            android:textColor="#000000" />
+    </FrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listView"

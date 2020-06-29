@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical">
+
+    <TextView
+        android:drawableLeft="@drawable/ic_back_search"
+        android:paddingLeft="5dp"
+        android:background="@color/colorPrimary"
+        android:textStyle="bold"
+        android:textSize="12dp"
+        android:textColor="#F5F1E9E9"
+        android:text=" Tìm kiếm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <FrameLayout
         android:id="@+id/search_edit_frame"
         android:layout_width="match_parent"

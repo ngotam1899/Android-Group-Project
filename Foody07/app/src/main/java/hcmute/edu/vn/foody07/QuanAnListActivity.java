@@ -1,6 +1,8 @@
 package hcmute.edu.vn.foody07;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -13,7 +15,13 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.android.material.tabs.TabLayout;
+
 import java.util.ArrayList;
+
+import hcmute.edu.vn.foody07.TabLayouts.FragmentClose;
+import hcmute.edu.vn.foody07.TabLayouts.FragmentResult;
+import hcmute.edu.vn.foody07.TabLayouts.PageViewAdapter;
 
 public class QuanAnListActivity extends AppCompatActivity {
     SQLiteDatabase database;
@@ -25,6 +33,10 @@ public class QuanAnListActivity extends AppCompatActivity {
     ArrayList<QuanAn> list;
     QuanAnListAdapter adapter;
 
+    private TabLayout tabLayout;
+    private PageViewAdapter viewAdapter;
+    private ViewPager viewPager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +47,7 @@ public class QuanAnListActivity extends AppCompatActivity {
         txtSearch=(EditText)findViewById(R.id.txtSearch);
 
         initCity();
-        initQuanAn();
+        //initQuanAn();
         btnCity.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -50,6 +62,18 @@ public class QuanAnListActivity extends AppCompatActivity {
                 startActivityForResult(myIntent, 0);
             }
         });
+
+        tabLayout=(TabLayout) findViewById(R.id.tabLayout);
+        viewPager=(ViewPager) findViewById(R.id.viewPager);
+        viewAdapter=new PageViewAdapter(getSupportFragmentManager());
+
+        //add fragment
+        viewAdapter.AddFragment(new FragmentResult(), "Đúng nhất");
+        viewAdapter.AddFragment(new FragmentClose(),"Gần tôi");
+
+        viewPager.setAdapter(viewAdapter);
+        tabLayout.setupWithViewPager(viewPager);
+
     }
 
     private void initQuanAn() {
