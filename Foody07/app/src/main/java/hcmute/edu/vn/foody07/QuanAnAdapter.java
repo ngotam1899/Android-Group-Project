@@ -50,13 +50,14 @@ public class QuanAnAdapter extends RecyclerView.Adapter<QuanAnAdapter.MyViewHold
         return list.size();
     }
     public class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView txtName_2,txtAddress_2;
+        TextView txtName_2,txtAddress_2,txtDistance;
         ImageView imageView;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             txtName_2=(TextView)itemView.findViewById(R.id.txtName_2);
             txtAddress_2=(TextView)itemView.findViewById(R.id.txtAddress_2);
             imageView=(ImageView)itemView.findViewById(R.id.imgCustom_2);
+            txtDistance =(TextView)itemView.findViewById(R.id.txtDistance);
         }
     }
 }

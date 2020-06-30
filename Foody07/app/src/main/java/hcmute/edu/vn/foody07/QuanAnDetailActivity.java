@@ -65,6 +65,9 @@ public class QuanAnDetailActivity extends AppCompatActivity {
         int max=cursor.getInt(6);
         String close=cursor.getString(10);
         String open=cursor.getString(9);
+        double distance = cursor.getDouble(12);
+        distance = Math.round(distance*100)/100D;
+
         //cursor.getLocalTime
 
         txtName.setText(ten);
@@ -74,6 +77,6 @@ public class QuanAnDetailActivity extends AppCompatActivity {
         txtMin.setText(min+"");
         txtClose.setText(close);
         txtOpen.setText(open);
-
+        txtDistance.setText(distance +" km");
     }
 }

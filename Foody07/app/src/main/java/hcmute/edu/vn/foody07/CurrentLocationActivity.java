@@ -90,12 +90,7 @@ public class CurrentLocationActivity extends AppCompatActivity {
                     }
                 }, Looper.getMainLooper());
     }
-    static final double _eQuatorialEarthRadius = 6378.1370D;
-    static final double _d2r = (Math.PI / 180D);
 
-   /* private int HaversineInM(double lat1, double long1, double lat2, double long2) {
-        return (int) (1000D * HaversineInKM(lat1, long1, lat2, long2));
-    }*/
 
     private void MoveToMain()
      {

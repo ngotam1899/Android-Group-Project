@@ -57,8 +57,10 @@ public class FragmentResult extends Fragment {
             String address=cursor.getString(2);
             byte[] img=cursor.getBlob(4);
             String type=cursor.getString(3);
+            double distance = cursor.getDouble(12);
+            distance = Math.round(distance*100)/100D;
             //thêm dữ lie5u vào list
-            list.add(new QuanAn(id,name,address,img,type));
+            list.add(new QuanAn(id,name,address,img,type,distance));
         }
         //adapter.notifyDataSetChanged(); //adapter vẽ lại giao diện
     }

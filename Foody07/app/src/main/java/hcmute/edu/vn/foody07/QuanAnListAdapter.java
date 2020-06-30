@@ -54,6 +54,7 @@ public class QuanAnListAdapter extends BaseAdapter {
         txtName.setText(quanAn.NameShopFood);
         txtAddress.setText(quanAn.DiaChi);
         txtType.setText(quanAn.TypeShop);
+        txtDistance.setText(quanAn.Distance+"km");
         Bitmap bitmap= BitmapFactory.decodeByteArray(quanAn.Image,0,quanAn.Image.length);
         imgCustom.setImageBitmap(bitmap);
         imgCustom.setOnClickListener(new View.OnClickListener() {

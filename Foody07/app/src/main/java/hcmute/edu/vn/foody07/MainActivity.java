@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -19,6 +20,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     final String DATABASE_NAME="foody.sqlite";
     SQLiteDatabase database;
+    ContentValues contentValues;
     Button btnCity;
     RecyclerView list_item;
     ArrayList<QuanAn> list;
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private  double latitude=0;
     private  double longitude=0;
     private DistanceService distanceService = new DistanceService();
+    private String Id_shop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +54,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void readData() {
         database=Database.initDatabase(this,DATABASE_NAME);
-        Cursor cursor=database.rawQuery("SELECT NameShopFood,DiaChi,Image,Latitude,Longitude FROM QUANAN",null);
+        contentValues = new ContentValues();
+
+        Cursor cursor=database.rawQuery("SELECT NameShopFood,DiaChi,Image,Latitude,Longitude,IdShopFood FROM QUANAN",null);
         //xóa dữ liệu cũ
         list.clear();
         for(int i=0;i<cursor.getCount();i++){
@@ -60,8 +65,14 @@ public class MainActivity extends AppCompatActivity {
             String address=cursor.getString(1);
             byte[] img=cursor.getBlob(2);
             double distance = distanceService.HaversineInKM(latitude,longitude,cursor.getDouble(3),cursor.getDouble(4));
-            //thêm dữ lie5u vào list
-            /*Toast.makeText(MainActivity.this, name+": "+distance+" KM", Toast.LENGTH_SHORT).show();*/
+
+            contentValues.put("Distance",distance);
+
+            Id_shop = (String) cursor.getString(5);
+
+            //Toast.makeText(this,Id_shop+" KM ",Toast.LENGTH_SHORT).show();
+
+            long result =database.update("QUANAN",contentValues,"IdShopFood=?",new String[]{Id_shop});
 
             list.add(new QuanAn(name,address,img,distance));
         }

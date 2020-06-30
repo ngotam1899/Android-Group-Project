@@ -15,9 +15,9 @@ public class QuanAn {
     public String open;
     public String close;
     public int CodeNumber;
-    public  double distance=0;
+    public  double Distance;
 
-    public  void setDistance(double dis){distance=dis;}
+    public  void setDistance(double dis){Distance=dis;}
     public void setMin(int min) {
         Min = min;
     }
@@ -114,7 +114,7 @@ public class QuanAn {
         return Image;
     }
 
-    public  double getDistance(){return distance;}
+    public  double getDistance(){return Distance;}
 
     public QuanAn(String nameShopFood, String diaChi,byte[] image) {
 
@@ -128,15 +128,16 @@ public class QuanAn {
         NameShopFood = nameShopFood;
         DiaChi = diaChi;
         Image = image;
-        distance = distance;
+        Distance = distance;
     }
 
-    public QuanAn(int idShopFood ,String nameShopFood, String diaChi,byte[] image,String typeShop) {
+    public QuanAn(int idShopFood ,String nameShopFood, String diaChi,byte[] image,String typeShop,double distance) {
         IdShopFood = idShopFood;
         NameShopFood = nameShopFood;
         DiaChi = diaChi;
         Image = image;
         TypeShop = typeShop;
+        Distance = distance;
     }
 
     public QuanAn(String nameShopFood, String diaChi,String typeShop,int min, int max,String open, String close) {
