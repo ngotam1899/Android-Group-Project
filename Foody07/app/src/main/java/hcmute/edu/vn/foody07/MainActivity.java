@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,10 +23,20 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView list_item;
     ArrayList<QuanAn> list;
     QuanAnAdapter anAdapter;
+
+    private  double latitude=0;
+    private  double longitude=0;
+    private DistanceService distanceService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = getIntent();
+        latitude = intent.getDoubleExtra("latitude",2);
+        longitude = intent.getDoubleExtra("longitude",2);
+
         addControls();
         readData();
 
@@ -40,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void readData() {
         database=Database.initDatabase(this,DATABASE_NAME);
-        Cursor cursor=database.rawQuery("SELECT NameShopFood,DiaChi,Image FROM QUANAN",null);
+        Cursor cursor=database.rawQuery("SELECT NameShopFood,DiaChi,Image,Latitude,Longitude FROM QUANAN",null);
         //xóa dữ liệu cũ
         list.clear();
         for(int i=0;i<cursor.getCount();i++){
@@ -48,8 +59,9 @@ public class MainActivity extends AppCompatActivity {
             String name=cursor.getString(0);
             String address=cursor.getString(1);
             byte[] img=cursor.getBlob(2);
+            double distance = distanceService.HaversineInKM(latitude,longitude,cursor.getDouble(3),cursor.getDouble(4));
             //thêm dữ lie5u vào list
-            list.add(new QuanAn(name,address,img));
+            list.add(new QuanAn(name,address,img,distance));
         }
         anAdapter.notifyDataSetChanged(); //adapter vẽ lại giao diện
     }
