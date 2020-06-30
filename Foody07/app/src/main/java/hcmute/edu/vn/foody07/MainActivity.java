@@ -26,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<QuanAn> list;
     QuanAnAdapter anAdapter;
 
-    private  double latitude=0;
-    private  double longitude=0;
+    private static double latitude=0;
+    private static double longitude=0;
     private DistanceService distanceService = new DistanceService();
     private String Id_shop;
 
@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Intent intent = getIntent();
-        latitude = intent.getDoubleExtra("latitude",2);
-        longitude = intent.getDoubleExtra("longitude",2);
+        latitude = intent.getDoubleExtra("latitude",0);
+        longitude = intent.getDoubleExtra("longitude",0);
 
         addControls();
         readData();
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         database=Database.initDatabase(this,DATABASE_NAME);
         contentValues = new ContentValues();
 
-        Cursor cursor=database.rawQuery("SELECT NameShopFood,DiaChi,Image,Latitude,Longitude,IdShopFood FROM QUANAN",null);
+        Cursor cursor=database.rawQuery("SELECT NameShopFood,DiaChi,Image,Latitude,Longitude,IdShopFood,Distance FROM QUANAN",null);
         //xóa dữ liệu cũ
         list.clear();
         for(int i=0;i<cursor.getCount();i++){
@@ -64,17 +64,26 @@ public class MainActivity extends AppCompatActivity {
             String name=cursor.getString(0);
             String address=cursor.getString(1);
             byte[] img=cursor.getBlob(2);
-            double distance = distanceService.HaversineInKM(latitude,longitude,cursor.getDouble(3),cursor.getDouble(4));
 
-            contentValues.put("Distance",distance);
+            double isDistance = cursor.getDouble(6);
+            if(isDistance >0 )
+            {
+                list.add(new QuanAn(name,address,img,isDistance));
+            }
+            else
+            {
+                double distance = distanceService.HaversineInKM(latitude,longitude,cursor.getDouble(3),cursor.getDouble(4));
+                distance = Math.round(distance*100)/100D;
+                contentValues.put("Distance",distance);
 
-            Id_shop = (String) cursor.getString(5);
+                Id_shop = (String) cursor.getString(5);
 
-            //Toast.makeText(this,Id_shop+" KM ",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,distance+" KM ",Toast.LENGTH_SHORT).show();
 
-            long result =database.update("QUANAN",contentValues,"IdShopFood=?",new String[]{Id_shop});
+                long result =database.update("QUANAN",contentValues,"IdShopFood=?",new String[]{Id_shop});
 
-            list.add(new QuanAn(name,address,img,distance));
+                list.add(new QuanAn(name,address,img,distance));
+            }
         }
         anAdapter.notifyDataSetChanged(); //adapter vẽ lại giao diện
     }
