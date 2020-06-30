@@ -26,9 +26,10 @@ import java.util.Date;
 public class QuanAnDetailActivity extends AppCompatActivity {
     SQLiteDatabase database;
     final String DATABASE_NAME="foody.sqlite";
-    Button btnBack, btnMenu,btnWifi;
-    TextView txtName, txtCity, txtSituation, txtOpen,txtClose, txtAddress, txtDistance, txtType,txtMin,txtMax;
+    Button btnBack, btnMenu,btnWifi, btnUpdate;
+    TextView txtName, txtCity, txtSituation, txtOpen,txtClose, txtAddress, txtDistance, txtType,txtMin,txtMax,txtPass_view;
     ListView listView;
+    EditText txtWifiname,txtPass;
     SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
 
 
@@ -49,12 +50,13 @@ public class QuanAnDetailActivity extends AppCompatActivity {
         txtMax = (TextView) findViewById(R.id.txtMax);
         txtDistance = (TextView) findViewById(R.id.txtDistance);
         txtType = (TextView) findViewById(R.id.txtType);
-
+        txtPass_view = (TextView) findViewById(R.id.txtPass_view);
         try {
             initQuanAnDetail();
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        initWifiDetail();
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,20 +66,48 @@ public class QuanAnDetailActivity extends AppCompatActivity {
         btnWifi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 DialogWifi();
             }
         });
     }
 
+    private void initWifiDetail() {
+        Intent intent = getIntent();
+        final int IdShopFood=intent.getIntExtra("IdShopFood",-1);
+        database=Database.initDatabase(this,DATABASE_NAME);
+        Cursor cursor=database.rawQuery("SELECT * FROM WIFI WHERE IdShopFood=?",new String[]{IdShopFood+""});
+        cursor.moveToFirst();
+
+        String ten=cursor.getString(1);
+        String pass=cursor.getString(2);
+        btnWifi.setText(ten);
+        txtPass_view.setText(pass);
+    }
+
     private void DialogWifi() {
         Dialog dialog=new Dialog(this);
         dialog.setContentView(R.layout.dialog_add_wifi);
+
+
+        txtWifiname = (EditText) findViewById(R.id.txtWifiname);
+        txtPass = (EditText) findViewById(R.id.txtPass);
+        btnUpdate=(Button) findViewById(R.id.btnUpdate);
+        initWifi();
         dialog.show();
+    }
 
-        EditText txtWifiname = (EditText) findViewById(R.id.txtWifiname);
-        EditText txtPass = (EditText) findViewById(R.id.txtPass);
+    private void initWifi() {
+        Intent intent = getIntent();
+        final int IdShopFood=intent.getIntExtra("IdShopFood",-1);
+        database=Database.initDatabase(this,DATABASE_NAME);
+        Cursor cursor=database.rawQuery("SELECT * FROM WIFI WHERE IdShopFood=?",new String[]{IdShopFood+""});
+        cursor.moveToFirst();
 
-
+        String ten=cursor.getString(1);
+        String pass=cursor.getString(2);
+        //txtWifiname.setText();
+        //txtPass.setText(pass);
     }
 
     private void initQuanAnDetail() throws ParseException {
