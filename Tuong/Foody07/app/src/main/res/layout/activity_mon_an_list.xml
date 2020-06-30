@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".QuanAnDetailActivity">
+    <TextView
+        android:drawableLeft="@drawable/ic_back_search"
+        android:paddingLeft="5dp"
+        android:background="@color/colorPrimary"
+        android:textStyle="bold"
+        android:textSize="12dp"
+        android:textColor="#F5F1E9E9"
+        android:text=" Tìm kiếm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="30dp"
+            android:layout_height="50dp"
+            android:background="@color/colorPrimary"
+            android:drawableLeft="@drawable/back"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="48dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="vertical">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout_Menu"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="#F5F1E9E9">
+
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tab_Anh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ảnh">
+
+                </com.google.android.material.tabs.TabItem>
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tab_ThucDon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Thực đơn">
+
+                </com.google.android.material.tabs.TabItem>
+            </com.google.android.material.tabs.TabLayout>
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+    <TextView
+        android:id="@id/txtName"
+        android:textColor="#F5E53935"
+        android:gravity="center"
+        android:padding="10dp"
+        android:background="#E9D5E3E8"
+        android:textStyle="bold"
+        android:text="Bún đậu cô Chang"
+        android:textSize="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+</LinearLayout>
