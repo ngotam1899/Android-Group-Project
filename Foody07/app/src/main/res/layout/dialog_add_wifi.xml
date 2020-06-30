@@ -9,7 +9,7 @@
         android:paddingRight="10dp">
         <EditText
             android:layout_centerHorizontal="true"
-            android:id="@+id/txt_wifiname_id"
+            android:id="@+id/txtWifiname"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
@@ -21,10 +21,10 @@
             android:padding="5dp" />
 
         <EditText
-            android:id="@+id/txt_pass_id"
+            android:id="@+id/txtPass"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txt_wifiname_id"
+            android:layout_below="@+id/txtWifiname"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             android:background="@drawable/wifi_round"
@@ -38,7 +38,7 @@
         <Button
             android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txt_pass_id"
+            android:layout_below="@+id/txtPass"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="50dp"
             android:gravity="center"

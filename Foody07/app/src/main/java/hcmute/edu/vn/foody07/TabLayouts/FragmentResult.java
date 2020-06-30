@@ -27,11 +27,11 @@ public class FragmentResult extends Fragment {
 
     private ListView listView;
     private ArrayList<QuanAn> list;
-
+    public FragmentResult(){}
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_close, container, false);
+        View view = inflater.inflate(R.layout.fragment_result, container, false);
         listView = (ListView) view.findViewById(R.id.listView);
         QuanAnListAdapter adapter=new QuanAnListAdapter(getContext(),list);
         listView.setAdapter(adapter);
@@ -43,9 +43,7 @@ public class FragmentResult extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         list=new ArrayList<>();
-        //QuanAnListAdapter adapter=new QuanAnListAdapter(getContext(),list);
         //đọc data
-        //Intent intent=getIntent();
         int CodeNumber= getActivity().getIntent().getIntExtra("CodeNumber",-1);
         database=Database.initDatabase(getActivity(),DATABASE_NAME);
         Cursor cursor=database.rawQuery("SELECT * FROM QUANAN WHERE CodeNumber=?",new String[]{CodeNumber+""});
@@ -57,8 +55,10 @@ public class FragmentResult extends Fragment {
             String address=cursor.getString(2);
             byte[] img=cursor.getBlob(4);
             String type=cursor.getString(3);
+            double distance = cursor.getDouble(12);
+            distance = Math.round(distance*100)/100D;
             //thêm dữ lie5u vào list
-            list.add(new QuanAn(id,name,address,img,type));
+            list.add(new QuanAn(id,name,address,img,type,distance));
         }
         //adapter.notifyDataSetChanged(); //adapter vẽ lại giao diện
     }

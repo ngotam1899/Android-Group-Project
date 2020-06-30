@@ -2,6 +2,7 @@ package hcmute.edu.vn.foody07;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,6 +11,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -21,7 +23,7 @@ import java.util.Calendar;
 public class QuanAnDetailActivity extends AppCompatActivity {
     SQLiteDatabase database;
     final String DATABASE_NAME="foody.sqlite";
-    Button btnBack, btnMenu;
+    Button btnBack, btnMenu,btnWifi;
     TextView txtName, txtCity, txtSituation, txtOpen,txtClose, txtAddress, txtDistance, txtType,txtMin,txtMax;
     ListView listView;
     @Override
@@ -29,6 +31,7 @@ public class QuanAnDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quan_an_detail);
 
+        btnWifi = (Button) findViewById(R.id.btnWifi);
         btnBack = (Button) findViewById(R.id.btnBack);
         btnMenu = (Button) findViewById(R.id.btnMenu);
         txtName = (TextView) findViewById(R.id.txtName);
@@ -42,20 +45,36 @@ public class QuanAnDetailActivity extends AppCompatActivity {
         txtType = (TextView) findViewById(R.id.txtType);
 
         initQuanAnDetail();
-
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(QuanAnDetailActivity.this, MainActivity.class));
             }
         });
+        btnWifi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogWifi();
+            }
+        });
+    }
+
+    private void DialogWifi() {
+        Dialog dialog=new Dialog(this);
+        dialog.setContentView(R.layout.dialog_add_wifi);
+        dialog.show();
+
+        EditText txtWifiname = (EditText) findViewById(R.id.txtWifiname);
+        EditText txtPass = (EditText) findViewById(R.id.txtPass);
+
+
     }
 
     private void initQuanAnDetail() {
         Intent intent = getIntent();
-        int IdShopFood=intent.getIntExtra("IdShopFood",-1);
+        final int IdShopFood=intent.getIntExtra("IdShopFood",-1);
         database=Database.initDatabase(this,DATABASE_NAME);
-        Cursor cursor=database.rawQuery("SELECT * FROM QUANAN WHERE IdShopFood=?",new String[]{IdShopFood+""});
+        Cursor cursor=database.rawQuery("SELECT * FROM QUANAN,TINHTHANH WHERE IdShopFood=? AND QUANAN.CodeNumber=TINHTHANH.CodeNumber",new String[]{IdShopFood+""});
         cursor.moveToFirst();
 
         String ten=cursor.getString(1);
@@ -65,6 +84,9 @@ public class QuanAnDetailActivity extends AppCompatActivity {
         int max=cursor.getInt(6);
         String close=cursor.getString(10);
         String open=cursor.getString(9);
+        double distance = cursor.getDouble(12);
+        distance = Math.round(distance*100)/100D;
+        String city=cursor.getString(14);
         //cursor.getLocalTime
 
         txtName.setText(ten);
@@ -74,6 +96,15 @@ public class QuanAnDetailActivity extends AppCompatActivity {
         txtMin.setText(min+"");
         txtClose.setText(close);
         txtOpen.setText(open);
-
+        txtCity.setText(city);
+        txtDistance.setText(distance +" km");
+        findViewById(R.id.btnMenu).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(QuanAnDetailActivity.this, MonAnListActivity.class);
+                intent.putExtra("IdShopFood", IdShopFood);
+                startActivity(intent);
+            }
+        });
     }
 }

@@ -47,7 +47,6 @@ public class QuanAnListActivity extends AppCompatActivity {
         txtSearch=(EditText)findViewById(R.id.txtSearch);
 
         initCity();
-        //initQuanAn();
         btnCity.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -74,31 +73,6 @@ public class QuanAnListActivity extends AppCompatActivity {
         viewPager.setAdapter(viewAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
-    }
-
-    private void initQuanAn() {
-        //ánh xạ
-        listView= (ListView) findViewById(R.id.listView);
-        list=new ArrayList<>();
-        adapter=new QuanAnListAdapter(this,list);
-        listView.setAdapter(adapter);
-        //đọc data
-        Intent intent=getIntent();
-        int CodeNumber= intent.getIntExtra("CodeNumber",-1);
-        database=Database.initDatabase(this,DATABASE_NAME);
-        Cursor cursor=database.rawQuery("SELECT * FROM QUANAN WHERE CodeNumber=?",new String[]{CodeNumber+""});
-        list.clear();
-        for(int i=0;i<cursor.getCount();i++){
-            cursor.moveToPosition(i);
-            int id=cursor.getInt(0);
-            String name=cursor.getString(1);
-            String address=cursor.getString(2);
-            byte[] img=cursor.getBlob(4);
-            String type=cursor.getString(3);
-            //thêm dữ lie5u vào list
-            list.add(new QuanAn(id,name,address,img,type));
-        }
-        adapter.notifyDataSetChanged(); //adapter vẽ lại giao diện
     }
 
     private void initCity() {
