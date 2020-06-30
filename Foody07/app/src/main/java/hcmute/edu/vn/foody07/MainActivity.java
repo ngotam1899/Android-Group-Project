@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     private  double latitude=0;
     private  double longitude=0;
-    private DistanceService distanceService;
+    private DistanceService distanceService = new DistanceService();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
             byte[] img=cursor.getBlob(2);
             double distance = distanceService.HaversineInKM(latitude,longitude,cursor.getDouble(3),cursor.getDouble(4));
             //thêm dữ lie5u vào list
+            /*Toast.makeText(MainActivity.this, name+": "+distance+" KM", Toast.LENGTH_SHORT).show();*/
+
             list.add(new QuanAn(name,address,img,distance));
         }
         anAdapter.notifyDataSetChanged(); //adapter vẽ lại giao diện

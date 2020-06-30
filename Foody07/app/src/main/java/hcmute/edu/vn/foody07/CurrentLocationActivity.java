@@ -104,16 +104,7 @@ public class CurrentLocationActivity extends AppCompatActivity {
          intent.putExtra("longitude",longitude);
          startActivity(intent);
      }
-    public double HaversineInKM(/*double lat1, double long1,*/ double lat2, double long2) {
-        double dlong = (long2 - longitude) * _d2r;
-        double dlat = (lat2 - latitude) * _d2r;
-        double a = Math.pow(Math.sin(dlat / 2D), 2D) + Math.cos(latitude * _d2r) * Math.cos(lat2 * _d2r)
-                * Math.pow(Math.sin(dlong / 2D), 2D);
-        double c = 2D * Math.atan2(Math.sqrt(a), Math.sqrt(1D - a));
-        double d = _eQuatorialEarthRadius * c;
 
-        return d;
-    }
    // public  double getLatitude(){ return latitude;}
    // public  double getLongitude(){return  longitude;}
 
