@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -50,6 +52,27 @@ public class QuanAnListActivity extends AppCompatActivity {
                 startActivityForResult(myIntent, 0);
             }
         });
+        txtSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                if(!s.equals("")){
+                    search();
+                } else {
+                    initQuanAn();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     private void initQuanAn() {
@@ -76,7 +99,22 @@ public class QuanAnListActivity extends AppCompatActivity {
         }
         adapter.notifyDataSetChanged(); //adapter vẽ lại giao diện
     }
+    public void search() {
 
+        Cursor cursor = database.rawQuery("SELECT DISTINCT NameShopFood, DiaChi, QUANAN.Image " +
+                "FROM MONAN JOIN QUANAN ON MONAN.IdShopFood = QUANAN.IdShopFood " +
+                "WHERE NameShopFood LIKE '%" + txtSearch.getText() + "%' OR DiaChi LIKE '%" + txtSearch.getText() + "%' " +
+                "OR NameDishes LIKE '%" + txtSearch.getText() + "%'" , null);
+        list.clear();
+        for (int i = 0; i < cursor.getCount(); i++) {
+            cursor.moveToPosition(i);
+            String name = cursor.getString(0);
+            String address = cursor.getString(1);
+            byte[] img = cursor.getBlob(2);
+            list.add(new QuanAn(name, address, img));
+        }
+        adapter.notifyDataSetChanged();
+    }
     private void initCity() {
         Intent intent=getIntent();
         int CodeNumber= intent.getIntExtra("CodeNumber",-1);
