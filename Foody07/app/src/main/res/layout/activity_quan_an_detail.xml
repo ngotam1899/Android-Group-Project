@@ -142,6 +142,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="15dp"
+                android:drawableLeft="@drawable/marker"
+                android:drawablePadding="8dp"
                 android:text="Chợ Bùi Đức, Quốc Lộ 1A, P.Tam Hòa, Tp. Biên Hòa, Đồng Nai" />
 
             <LinearLayout
@@ -151,6 +153,8 @@
                 android:paddingBottom="10dp">
 
                 <TextView
+                    android:drawableLeft="@drawable/circle"
+                    android:drawablePadding="8dp"
                     android:id="@+id/txtDistance"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -166,6 +170,8 @@
 
             <TextView
                 android:id="@+id/txtType"
+                android:drawableLeft="@drawable/food"
+                android:drawablePadding="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="10dp"
@@ -178,6 +184,8 @@
 
                 <TextView
                     android:id="@+id/txtMin"
+                    android:drawableLeft="@drawable/dollar"
+                    android:drawablePadding="8dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="10000" />
@@ -204,13 +212,38 @@
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true" />
     </LinearLayout>
+    <RelativeLayout
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_marginRight="32dp"
+            android:id="@+id/CheckedIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/checked" />
+        <ImageView
+            android:layout_marginRight="32dp"
+            android:layout_toRightOf="@id/CheckedIcon"
+            android:id="@+id/WifiIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/wifi" />
+        <ImageView
+            android:layout_toRightOf="@id/WifiIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shipping" />
 
+    </RelativeLayout>
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#BDBDBD" />
 
     <Button
+        android:drawableLeft="@drawable/menu"
+        android:drawablePadding="8dp"
         android:id="@+id/btnMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -232,6 +265,8 @@
 
         <Button
             android:id="@+id/btnWifi"
+            android:drawableLeft="@drawable/wifi"
+            android:drawablePadding="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
