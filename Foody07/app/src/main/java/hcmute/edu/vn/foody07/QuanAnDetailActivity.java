@@ -1,6 +1,7 @@
 package hcmute.edu.vn.foody07;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -17,13 +18,21 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.Date;
 
-public class QuanAnDetailActivity extends AppCompatActivity {
+public class QuanAnDetailActivity extends AppCompatActivity implements OnMapReadyCallback {
     SQLiteDatabase database;
     final String DATABASE_NAME="foody.sqlite";
     Button btnBack, btnMenu,btnWifi, btnUpdate;
@@ -32,6 +41,15 @@ public class QuanAnDetailActivity extends AppCompatActivity {
     EditText txtWifiname,txtPass;
     SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
 
+    GoogleMap map;
+    String ten;
+    String diachi;
+    String type;
+    int min;
+    int max;
+    String city;
+    double latitude;
+    double longtitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +70,7 @@ public class QuanAnDetailActivity extends AppCompatActivity {
         txtType = (TextView) findViewById(R.id.txtType);
         txtPass_view = (TextView) findViewById(R.id.txtPass_view);
         txtSituation=(TextView) findViewById(R.id.txtSituation);
+
         try {
             initQuanAnDetail();
         } catch (ParseException e) {
@@ -71,6 +90,9 @@ public class QuanAnDetailActivity extends AppCompatActivity {
                 DialogWifi();
             }
         });
+
+        MapFragment fragment = (MapFragment) getFragmentManager().findFragmentById(R.id.store_map_id);
+        fragment.getMapAsync(this);
     }
 
     private void initWifiDetail() {
@@ -119,17 +141,18 @@ public class QuanAnDetailActivity extends AppCompatActivity {
             Cursor cursor = database.rawQuery("SELECT * FROM QUANAN,TINHTHANH WHERE IdShopFood=? AND QUANAN.CodeNumber=TINHTHANH.CodeNumber", new String[]{IdShopFood + ""});
             cursor.moveToFirst();
 
-            String ten = cursor.getString(1);
-            String diachi = cursor.getString(2);
-            String type = cursor.getString(3);
-            int min = cursor.getInt(5);
-            int max = cursor.getInt(6);
-
+            ten = cursor.getString(1);
+            diachi = cursor.getString(2);
+            type = cursor.getString(3);
+            min = cursor.getInt(5);
+            max = cursor.getInt(6);
+            latitude = cursor.getDouble(7);
+            longtitude=cursor.getDouble(8);
             double distance = cursor.getDouble(12);
             distance = Math.round(distance * 100) / 100D;
             txtDistance.setText(distance + " km");
 
-            String city = cursor.getString(14);
+            city = cursor.getString(14);
             //cursor.getLocalTime
             Date open = dateFormat.parse(cursor.getString(9));
             Date current = dateFormat.parse(dateFormat.format(new Date()));
@@ -164,5 +187,14 @@ public class QuanAnDetailActivity extends AppCompatActivity {
         } catch (Exception e){
 
         }
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        map = googleMap;
+
+        LatLng latLng = new LatLng(latitude,longtitude);
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,40));
+        map.addMarker(new MarkerOptions().title(ten).snippet(diachi).position(latLng));
     }
 }
