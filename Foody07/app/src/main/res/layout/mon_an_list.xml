@@ -15,7 +15,7 @@
             android:textAllCaps="false"
             android:textColor="@android:color/black"
             android:text="Name"
-            android:id="@+id/txt_foodname_id" />
+            android:id="@+id/txtFName" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -24,7 +24,7 @@
             android:textColor="@android:color/holo_blue_dark"
             android:text="Price"
             android:inputType="numberDecimal"
-            android:id="@+id/txt_foodprice_id"
+            android:id="@+id/txtFPrice"
             android:textStyle="bold"/>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

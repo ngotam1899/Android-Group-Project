@@ -18,6 +18,7 @@ import java.util.List;
 
 import hcmute.edu.vn.foody07.Database;
 import hcmute.edu.vn.foody07.MonAn;
+import hcmute.edu.vn.foody07.MonAnImageAdapter;
 import hcmute.edu.vn.foody07.MonAnListAdapter;
 import hcmute.edu.vn.foody07.R;
 
@@ -34,7 +35,7 @@ public class FragmentMenuImage extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_menu_hinh, container, false);
         listView = (RecyclerView) view.findViewById(R.id.listView_menu_hinh);
-        MonAnListAdapter adapter=new MonAnListAdapter(getContext(),list);
+        MonAnImageAdapter adapter=new MonAnImageAdapter(getContext(),list);
         listView.setLayoutManager(new GridLayoutManager(getActivity(),2));
         listView.setAdapter(adapter);
         return view;

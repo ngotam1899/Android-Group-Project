@@ -12,6 +12,10 @@ public class MonAn {
         Image = image;
         Price = price;
     }
+    public MonAn( String nameDishes, int price) {
+        NameDishes = nameDishes;
+        Price = price;
+    }
 
     public int getIdDishes() {
         return IdDishes;
