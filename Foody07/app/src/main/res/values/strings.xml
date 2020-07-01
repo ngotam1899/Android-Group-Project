@@ -13,5 +13,5 @@
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
     <string name="title_activity_tab">TabActivity</string>
-    <string name="api_map_key">AIzaSyAiw0rgS8RKkYGkPa1nzYV8TtlaeZnUuUg</string>
+    <string name="map_api_key">AIzaSyClzM65ddqea7I2s5IgkqQ2fqfvNOF7zlc</string>
 </resources>
