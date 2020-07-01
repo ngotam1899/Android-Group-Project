@@ -51,6 +51,7 @@ public class QuanAnDetailActivity extends AppCompatActivity {
         txtDistance = (TextView) findViewById(R.id.txtDistance);
         txtType = (TextView) findViewById(R.id.txtType);
         txtPass_view = (TextView) findViewById(R.id.txtPass_view);
+        txtSituation=(TextView) findViewById(R.id.txtSituation);
         try {
             initQuanAnDetail();
         } catch (ParseException e) {
